@@ -82,32 +82,32 @@ select{
     display: flex;
     margin-top: -2%;
     left: 5%;
+    justify-content: space-between;
     background-color: white;
 }
 
 .logo{
     display: flex;
     margin-left: 5%;
-    margin-top: -1%;
+    margin-top: 1%;
 }
 
-.logo img{
-    width: 100%;
-    height: auto;
-    margin-top: 13%;
+.logo h1{
+    font-style:oblique;
+    font-size: 50px;
 }
 
 .nav-search{
     display: flex;
-    padding: 30 250px;
-    margin-right: 17%;
-    margin-top: -10%;
+    padding: 30 20px;
+    margin-top: 0%;
 }
 
 .nav-search input{
-   padding: 10px 100px;
+   padding: 10px 150px;
    border-radius: 10px;
    text-align: left;
+   margin-left: -20%;
    border: 1px solid lightgrey;
 }
 
@@ -117,8 +117,8 @@ select{
 }
 
 .nav-center-icons .fa-user , .fa-heart, .fa-cart-shopping{
-    margin-top: 80%;
-    margin-left: -150%;
+    margin-top: 120%;
+    margin-left: -190%;
 }
 
 .nav-center-icons .fa-cart-shopping{
@@ -128,25 +128,23 @@ select{
 }
 
 .navigation{
-    background-color: #000000;
-    width: 100%;
-    margin-top: -8%;
-    height: 90%;
+    background:transparent;
+    margin-top: -2%;
 }
 
 .nav-links{
     display: flex;
     list-style-type: none;
     gap: 80px;
-    padding: 7px;
-     justify-content: center;
-     margin-top: 2%;
+    padding: 5px;
+    justify-content: center;
+    margin-top: 3%;
 }
 
 .nav-links a{
     text-decoration: none;
     color:lightgrey;
-    margin-top: -22px;
+    margin-top: -29px;
 }
 
 .nav-links a:hover{
