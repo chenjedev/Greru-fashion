@@ -1,291 +1,421 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-FASHION</title>
-    <link href="style.css" rel="stylesheet">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>G-FASHION Premium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    :root { --bg:#f6f1ea; --card:#fff; --ink:#111; --muted:#6a7280; --line:#e8dfd4; --brand:#be4a1e; --brand2:#7d2f14; --wrap:min(1120px,92vw); }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:"Outfit",sans-serif;background:radial-gradient(circle at 10% 10%,#ffe2c4,transparent 35%),var(--bg);color:var(--ink)}
+    a{text-decoration:none;color:inherit}
+    .wrap{width:var(--wrap);margin:auto}
+    .top{font-size:.9rem;color:var(--muted);border-bottom:1px solid var(--line)}
+    .top .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:.55rem 0}
+    header{position:sticky;top:0;z-index:20;background:#f6f1eadd;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    .nav{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;padding:.9rem 0}
+    .logo{font-family:"Playfair Display",serif;font-size:1.6rem}.logo span{color:var(--brand)}
+    .links{display:flex;justify-content:center;gap:1.1rem;list-style:none}
+    .links a{font-weight:600;color:#28303d}
+    .actions{display:flex;gap:.55rem;align-items:center}
+    .btn-icon{width:40px;height:40px;border:1px solid var(--line);background:#fff;border-radius:11px;display:grid;place-items:center;cursor:pointer}
+    .cart{padding:0 .8rem;height:40px;border:1px solid var(--line);background:#fff;border-radius:11px;display:flex;align-items:center;gap:.45rem;font-weight:700}
+    .menu{display:none}
+
+    .hero{padding:2.4rem 0}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:1.2rem;align-items:center}
+    .chip{display:inline-flex;gap:.4rem;padding:.4rem .8rem;border-radius:999px;background:#fff3e7;border:1px solid #f2cfb4;color:#7d2f14;font-weight:700;font-size:.86rem}
+    h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,5vw,4rem);line-height:1.03;margin:.9rem 0}
+    .lead{color:var(--muted);max-width:58ch}
+    .hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;margin:1.1rem 0 1rem}
+    .btn{height:45px;padding:0 1.1rem;border-radius:12px;border:0;cursor:pointer;font-weight:700;display:inline-flex;align-items:center;gap:.5rem}
+    .btn-primary{color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand2))}
+    .btn-light{background:#fff;border:1px solid var(--line)}
+    .hero-card{background:linear-gradient(160deg,#fff,#ffe9d6);border:1px solid #f2d4bc;border-radius:22px;padding:1rem;box-shadow:0 16px 34px #0000001d}
+    .hero-card img{width:100%;max-height:340px;object-fit:contain}
+
+    .section{padding:1.7rem 0}
+    .head{display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap;margin-bottom:.9rem}
+    .head h2{font-family:"Playfair Display",serif;font-size:2rem}
+    .head p{color:var(--muted)}
+    .slider-window{overflow:hidden}
+    .slider-stack{display:grid;gap:.9rem}
+    .slider-track{display:flex;gap:.9rem;transition:transform .45s ease}
+    .slider-track .card{min-width:calc((100% - 2.7rem)/4)}
+    .view-more-wrap{margin-top:1rem;display:flex;justify-content:center}
+    .trust{margin-top:1.6rem;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+    .trust .item{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.3rem;box-shadow:0 16px 28px #00000012}
+    .trust .item i{color:var(--brand);font-size:1.25rem}
+    .trust .item h4{font-size:1.15rem;margin:.55rem 0}
+    .trust .item .lead{font-size:.98rem}
+    .voices{margin-top:1.5rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
+    .voice{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.4rem;box-shadow:0 16px 28px #00000012;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+    .voice:hover{transform:translateY(-4px);box-shadow:0 20px 34px #00000017}
+    .voice.active{border-color:var(--brand);box-shadow:0 22px 36px #be4a1e24}
+    .voice h4{font-size:1.2rem;margin-bottom:.45rem}
+    .voice .lead{font-size:1.08rem;line-height:1.55}
+    .voice b{display:block;margin-top:.55rem}
+    .quick-cats{margin-top:1.1rem;display:flex;gap:.55rem;flex-wrap:wrap}
+    .quick-cats a{padding:.48rem .8rem;border:1px solid var(--line);background:#fff;border-radius:999px;font-weight:600}
+    .quick-cats a:hover{border-color:var(--brand);color:var(--brand)}
+    .faq{margin-top:1.6rem;background:#fff;border:1px solid var(--line);border-radius:16px;padding:1rem}
+    .faq details{border-bottom:1px solid var(--line);padding:.7rem 0}
+    .faq details:last-child{border-bottom:0}
+    .faq summary{cursor:pointer;font-weight:700;list-style:none;position:relative;padding-right:1.6rem}
+    .faq summary::after{content:"+";position:absolute;right:.2rem;top:0;font-weight:800;color:var(--brand)}
+    .faq details[open] summary::after{content:"-"}
+    .faq p{color:var(--muted);margin-top:.4rem}
+    .newsletter{margin-top:1.4rem;background:linear-gradient(120deg,#1f2937,#111827);color:#fff;border-radius:16px;padding:1rem;display:grid;grid-template-columns:1.2fr .8fr;gap:.7rem;align-items:center}
+    .newsletter-form{display:flex;gap:.5rem;flex-wrap:wrap}
+    .newsletter-form input{height:44px;border:1px solid #ffffff33;background:#ffffff1c;color:#fff;border-radius:10px;padding:0 .8rem}
+    .newsletter-form input::placeholder{color:#e5e7eb}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.2s transform,.2s box-shadow}
+    .card:hover{transform:translateY(-4px);box-shadow:0 14px 28px #00000016}
+    .media{height:200px;background:linear-gradient(#fff,#fff7ef);display:grid;place-items:center;padding:.8rem}
+    .media img{max-height:180px;object-fit:contain}
+    .body{padding:.85rem}.title{font-size:1rem;font-weight:700}.mini{font-size:.83rem;color:var(--muted);text-transform:capitalize}
+    .price{font-weight:800;color:var(--brand2)} .old{font-size:.86rem;color:#97a0ad;text-decoration:line-through;margin-left:.35rem}
+    .stars{color:#f3a11c;margin:.55rem 0;font-size:.8rem}
+    .actions2{display:flex;gap:.45rem}.actions2 .btn{height:39px;padding:0 .75rem;font-size:.88rem}
+
+    .flash{margin-top:1.2rem;background:linear-gradient(120deg,#1e293b,#0f172a);color:#fff;border-radius:18px;padding:1rem;display:grid;grid-template-columns:1fr auto;gap:.8rem;align-items:center}
+    .flash .btn-light{color:#111 !important}
+    .count{display:flex;gap:.45rem;flex-wrap:wrap}
+    .time{min-width:70px;background:#ffffff1f;border:1px solid #ffffff2b;border-radius:10px;padding:.55rem;text-align:center}
+    .time b{display:block;font-size:1.15rem}
+
+    .toast{position:fixed;right:1rem;bottom:1rem;background:#097a56;color:#fff;padding:.8rem .95rem;border-radius:11px;opacity:0;transform:translateY(10px);transition:.2s;z-index:99}
+    .toast.show{opacity:1;transform:none}
+
+    .modal{position:fixed;inset:0;display:none;place-items:center;background:#0a0a0db8;padding:1rem;z-index:60}
+    .modal.open{display:grid}
+    .modal-card{width:min(840px,95vw);background:#fff;border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
+    .modal-l{background:#f7f1eb;display:grid;place-items:center;padding:1rem}.modal-l img{max-height:330px;object-fit:contain}
+    .modal-r{padding:1rem;position:relative}.x{position:absolute;right:.7rem;top:.7rem;width:34px;height:34px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer}
+
+    footer{margin-top:1.8rem;padding:1.3rem 0 2rem;border-top:1px solid var(--line);color:var(--muted)}
+    .fgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:1rem}
+
+    @media (max-width:980px){
+      .hero-grid,.fgrid,.modal-card,.trust,.voices,.newsletter{grid-template-columns:1fr 1fr}
+      .slider-track .card{min-width:calc((100% - .9rem)/2)}
+    }
+    @media (max-width:760px){
+      .nav{grid-template-columns:auto auto;justify-content:space-between}.menu{display:grid}
+      .links{position:fixed;top:84px;left:0;right:0;background:#fffffff2;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:.9rem;flex-direction:column;align-items:start;transform:scaleY(0);transform-origin:top;transition:.2s}
+      .links.open{transform:scaleY(1)}
+      .hero-grid,.fgrid,.modal-card,.flash,.trust,.voices,.newsletter{grid-template-columns:1fr}
+      .slider-track .card{min-width:100%}
+      .top .wrap{justify-content:center}
+    }
+  </style>
 </head>
 <body>
-    
-<!--------------- NAVBAR SECTION ------------>
-    <nav class="navbar-section">
-        <div class="nav-top">
-            <div class="nav-contacts">
-              <p><i class="fa-solid fa-phone"></i>Need help? Call us: +263 78 404 0311</p>
-            </div>
-            <div class="nav-offer">
-              <p><i class="fa-solid fa-gift"></i>20% off on  your first order</p>
-            </div>
-            <div class="nav-languages">
-                <i class="fa-solid fa-language"></i>
-                <p><select id="language">
-                    <option value="" deselected option>ENG</option>
-                    <option value="1">English</option>
-                    <option value="2">Español </option>
-                    <option value="3">Français</option>
-                    <option value="4">Deutsch </option>
-                </select></p>
-                <i class="fa-solid fa-dollar-sign"></i>
-                <p><select id="currenct">
-                    <option value="" deselected option>USD</option>
-                    <option value="1">USD</option>
-                    <option value="2">EUR</option>
-                    <option value="3">GBP</option>
-                </select></p>
-            </div>
-        </div><br>
+  <div class="top"><div class="wrap"><p><i class="fa-solid fa-truck-fast"></i> Free shipping over $120</p><p><i class="fa-solid fa-shield-halved"></i> Secure checkout</p></div></div>
+  <header>
+    <div class="wrap nav">
+      <a href="#home" class="logo">G-<span>Fashion</span></a>
+      <ul class="links" id="links"><li><a href="#home">Home</a></li><li><a href="#shop">Shop</a></li><li><a href="#flash">Deals</a></li><li><a href="products.html">Products</a></li></ul>
+      <div class="actions">
+        <button class="btn-icon" id="focusSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <a class="cart" href="cart.html"><i class="fa-solid fa-cart-shopping"></i> <span id="cartCount">0</span></a>
+        <button class="btn-icon menu" id="menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
 
-        <div class="nav-center">
-            <div class="logo">
-               <h1>G-fashion</h1>
-            </div>
-            <div class="nav-search">
-                <p><input type="search" id="nav-search" name="nav-search" placeholder="Search for products"></p>
-            </div>
-            <div class="nav-center-icons">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <i class="fa-solid fa-heart"></i>
-                <i class="fa-solid fa-user"></i>
-               </i>
-            </div>
-        </div>
-
-        <div class="navigation">
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="cart.html">Cart</a></li>
-                <li><a href="#contacts">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-<!---------- HERO-SECTION ---------->
-    <section class="hero-section" id="home">
-       
-        <div class="hero-contents">
-           <h1>Your Ultimate Destination for Trendsetting Fashion.</h1>
-           <p>Dive into our exclusive selection of modern and classic pieces designed to inspire. From casual chic to sophisticated statements, find your perfect outfit for every occasion.</p>
-          <div class="hero-btns">
-            <div class="shopbtn"><a href="cart.html">Shop Now</a></div>
-            <div class="categoies"><a href="products.html">Browse Categories</a></div>
-          </div>
+  <main id="home" class="wrap">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="chip"><i class="fa-solid fa-bolt"></i> New season drops</span>
+          <h1>Premium ecommerce experience for your fashion brand.</h1>
+          <p class="lead">Interactive, fast and mobile-ready storefront with smooth filters, quick view, cart feedback and dynamic sale countdown.</p>
           <div class="hero-cta">
-            <div class="shipping"><i class="fa-solid fa-truck"></i><p>Free Shipping</p></div>
-             <div class="Guarantee"><i class="fa-solid fa-award"></i><p>Quality Guarantee</p></div>
-             <div class="support"><i class="fa-solid fa-headset"></i><p>24/7 Support</p></div>
+            <a class="btn btn-primary" href="#shop"><i class="fa-solid fa-bag-shopping"></i> Shop now</a>
+            <a class="btn btn-light" href="products.html"><i class="fa-solid fa-layer-group"></i> All products</a>
           </div>
         </div>
-       
-        <div class="hero-icons">
-
-        </div>
-       
-        <div class="hero-image">
-            <div class="hero-image-info"><p>Best Seller</p></div>
-            <img src="img/sweater/okoj-removebg-preview.png">
-           <div class="hero-image-cont">
-               <p>Premium Wireless Headphone</p>
-               <h1>$299 <span>$399</span></h1>
-           </div>
-           <div class="hero-image-img">
-            <div class="hr-img-1">
-                <img src="img/caps/images (21).jpeg">
-                <p>$89</p>
-            </div>
-            <div class="hr-img-2">
-                <img src="img/jeans/WhatsApp Image 2025-10-16 at 23.29.13_0f314f97.jpg">
-                <p>$149</p>
-            </div>
-           </div>
-        </div>
-    
+        <div class="hero-card"><img id="heroImg" src="img/sweater/okoj-removebg-preview.png" alt="featured" /></div>
+      </div>
     </section>
 
+    <section class="section" id="shop">
+      <div class="head"><div><h2>Featured products</h2><p>Home products now auto-slide. For full catalog, open Products page.</p></div></div>
+      <div class="slider-stack">
+        <div class="slider-window"><div class="slider-track" id="grid1"></div></div>
+        <div class="slider-window"><div class="slider-track" id="grid2"></div></div>
+      </div>
+      <div class="view-more-wrap"><a class="btn btn-primary" href="products.html"><i class="fa-solid fa-arrow-right"></i> View more products</a></div>
+      <div class="quick-cats">
+        <a href="products.html">Sneakers</a>
+        <a href="products.html">Caps</a>
+        <a href="products.html">Jeans</a>
+        <a href="products.html">Sweaters</a>
+        <a href="products.html">Top Deals</a>
+      </div>
 
-<!-------------- BEST-SELER-SECTION ------------------>
-    <section class="bestseller-section">
-        <div class="bestseller-section-head">
-            <h1>Our Products</h1><hr>
-            <p>Explore our diverse and curated collection of the latest fashion trends and timeless essentials, handpicked to elevate your personal style.</p>
+      <div class="flash" id="flash"><div><h3>Flash Sale up to 50% off</h3><p>Limited time only.</p><p style="margin-top:.6rem"><a class="btn btn-light" href="products.html?deal=flash"><i class="fa-solid fa-bolt"></i> View Products</a></p></div><div class="count"><div class="time"><b id="d">00</b>Days</div><div class="time"><b id="h">00</b>Hours</div><div class="time"><b id="m">00</b>Min</div><div class="time"><b id="s">00</b>Sec</div></div></div>
+
+      <div class="trust">
+        <article class="item"><i class="fa-solid fa-box-open"></i><h4>Fast Delivery</h4><p class="lead">Dispatch in under 24 hours for most orders.</p></article>
+        <article class="item"><i class="fa-solid fa-shield"></i><h4>Secure Payment</h4><p class="lead">Trusted channels with safe verification.</p></article>
+        <article class="item"><i class="fa-solid fa-rotate-left"></i><h4>Easy Returns</h4><p class="lead">Simple exchange and return support.</p></article>
+        <article class="item"><i class="fa-solid fa-headset"></i><h4>Live Support</h4><p class="lead">Quick response by chat and phone.</p></article>
+      </div>
+
+      <div class="voices">
+        <article class="voice"><h4>Customer Love</h4><p class="lead">"Quality is top tier and delivery was super fast."</p><b>- Tariro M.</b></article>
+        <article class="voice"><h4>Customer Love</h4><p class="lead">"The fit and finishing felt premium. Will order again."</p><b>- Kelvin T.</b></article>
+        <article class="voice"><h4>Customer Love</h4><p class="lead">"Best local ecommerce fashion store I have used."</p><b>- Rudo C.</b></article>
+      </div>
+
+      <section class="faq">
+        <h3>Frequently Asked Questions</h3>
+        <details>
+          <summary>How long does delivery take?</summary>
+          <p>Most cities are delivered within 24-48 hours after dispatch.</p>
+        </details>
+        <details>
+          <summary>Can I return a product?</summary>
+          <p>Yes, returns are accepted within 7 days if item is unused and in original condition.</p>
+        </details>
+        <details>
+          <summary>What payment options do you support?</summary>
+          <p>Mastercard, Visa, PayPal, M-Pesa, Mix by Yas, and Airtel Money.</p>
+        </details>
+      </section>
+
+      <section class="newsletter">
+        <div>
+          <h3>Get New Drops First</h3>
+          <p class="lead">Subscribe for launch alerts, member deals and limited releases.</p>
         </div>
-        <div class="Seller-div">
-            
-            <div class="seller-products">
-                <img src="img/shoes/WhatsApp Image 2025-10-16 at 23.03.35_e1e01aaf.jpg">
-                <p class="seller-products-info-1">LIMITED</p>
-                 <div class="seller-products-cont">
-                    <h5>TRENDING NOW</h5>
-                    <p>AIR JORDAN 4</p>
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    <h3>$189.00</h3>
-                </div>
-            </div>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email" required />
+          <button class="btn btn-primary" type="submit"><i class="fa-solid fa-paper-plane"></i> Subscribe</button>
+        </form>
+      </section>
 
-            <div class="seller-products">
-                <img src="img/sweater/14042023015939_3417_600x600-removebg-preview.png">
-                <p class="seller-products-info-2">20% OFF</p>
-                 <div class="seller-products-cont">
-                    <h5>BEST SELLERS</h5>
-                    <p>Sed do eiusmod tempor incididunt</p>
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    <h3>$180.00</h3>
-                </div>
-            </div>
-
-            <div class="seller-products">
-                <img src="img/caps/WhatsApp Image 2025-10-16 at 23.20.45_06c689ec.jpg">
-                 <div class="seller-products-cont">
-                    <h5>NEW ARRIVALS</h5>
-                    <p>CALVIN KLEIN CAP</p>
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    <h3>$95.00</h3>
-                </div>
-            </div>
-
-            <div class="seller-products">
-                <img src="img/jeans/WhatsApp Image 2025-10-16 at 23.29.13_0f314f97.jpg">
-                <p class="seller-products-info-3">TRENDING</p>
-                <div class="seller-products-cont">
-                    <h5>DESIGNER SERIES</h5>
-                    <p>Mauris blandit aliquet elit</p>
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    <h3>$165.00</h3>
-                </div>
-
-            </div>
-        </div>
     </section>
+  </main>
 
-<!---------------------- PRODUCT CATEGORIES  ------------->
-    <section class="products-categories">
-        
-        <div class="trending-products">
-            <h3>Trending Now</h3><hr>
-          <div class="trd-product">
-            <img src="img/jeans/ertyy-removebg-preview (1).png">
-             <p>Premium Leather Tote<br>(24)<br><br><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><br><br><span>$87.50</span></p>
+  <footer><div class="wrap fgrid"><div><h3 class="logo">G-<span>Fashion</span></h3><p>Global Village Room 58 & 06, Gweru</p></div><div><h4>Shop</h4><p><a href="index.html">Home</a></p><p><a href="products.html">Products</a></p><p><a href="cart.html">Cart</a></p></div><div><h4>Contact</h4><p>+263 78 404 0311</p><p>gfashion@gmail.com</p></div></div></footer>
+
+  <div class="modal" id="modal"><div class="modal-card"><div class="modal-l"><img id="mImg" src="" alt="product" /></div><div class="modal-r"><button class="x" id="close"><i class="fa-solid fa-xmark"></i></button><h3 id="mTitle"></h3><div class="stars" id="mStars"></div><p class="price" id="mPrice"></p><p id="mDesc" class="lead"></p><button class="btn btn-primary" id="mAdd"><i class="fa-solid fa-cart-plus"></i> Add to cart</button></div></div></div>
+  <div class="toast" id="toast">Added to cart</div>
+  <script>
+    const CART_KEY = "gf_cart_v1";
+    const data = [
+      {id:1,name:"Air Jordan 4",cat:"shoes",price:189,old:220,rate:4.8,img:"img/shoes/pexels-introspectivedsgn-4987523-removebg-preview.png",desc:"Iconic sneaker silhouette with premium comfort.",deal:"flash"},
+      {id:2,name:"Urban Knit",cat:"sweater",price:149,old:180,rate:4.7,img:"img/sweater/okoj-removebg-preview.png",desc:"Soft heavy-knit fit for clean street layering."},
+      {id:3,name:"Calvin Cap",cat:"caps",price:95,old:120,rate:4.9,img:"img/caps/images__20_-removebg-preview.png",desc:"Minimal cap with premium fabric and finish.",deal:"flash"},
+      {id:4,name:"City Denim",cat:"jeans",price:165,old:198,rate:4.6,img:"img/jeans/ertyy-removebg-preview.png",desc:"Tapered denim built for comfort and style."},
+      {id:5,name:"Sport Runner",cat:"shoes",price:139,old:165,rate:4.5,img:"img/shoes/pexels-indigentesce-9853347-removebg-preview.png",desc:"Lightweight everyday sneakers with grip.",deal:"flash"},
+      {id:6,name:"Elite Sweat",cat:"sweater",price:180,old:229,rate:4.8,img:"img/sweater/14042023015939_3417_600x600-removebg-preview.png",desc:"Premium sweater with modern tailored shape."},
+      {id:7,name:"Velvet Cap",cat:"caps",price:89,old:110,rate:4.4,img:"img/caps/kojioi-removebg-preview.png",desc:"Structured cap for smart casual outfits."},
+      {id:8,name:"Raw Black Denim",cat:"jeans",price:172,old:208,rate:4.7,img:"img/jeans/jbjbrvrv-removebg-preview.png",desc:"Dark denim with sharp stitched details.",deal:"flash"}
+    ];
+
+    const grid1 = document.getElementById("grid1");
+    const grid2 = document.getElementById("grid2");
+    const toast = document.getElementById("toast");
+    const cartCount = document.getElementById("cartCount");
+    const modal = document.getElementById("modal");
+    const close = document.getElementById("close");
+    const mImg = document.getElementById("mImg");
+    const mTitle = document.getElementById("mTitle");
+    const mStars = document.getElementById("mStars");
+    const mPrice = document.getElementById("mPrice");
+    const mDesc = document.getElementById("mDesc");
+    const mAdd = document.getElementById("mAdd");
+    const menu = document.getElementById("menu");
+    const links = document.getElementById("links");
+    const newsletterForm = document.getElementById("newsletterForm");
+    const newsletterEmail = document.getElementById("newsletterEmail");
+
+    let current = null;
+    const rowState = {
+      grid1: { idx: 0, timer: null, reverse: false },
+      grid2: { idx: 0, timer: null, reverse: true }
+    };
+
+    function getCart() {
+      try { return JSON.parse(localStorage.getItem(CART_KEY) || "[]"); }
+      catch (_) { return []; }
+    }
+
+    function saveCart(items) {
+      localStorage.setItem(CART_KEY, JSON.stringify(items));
+      const totalQty = items.reduce((sum, item) => sum + item.qty, 0);
+      localStorage.setItem("gf_cart_count", String(totalQty));
+      cartCount.textContent = String(totalQty);
+    }
+
+    function show(msg) {
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 1500);
+    }
+
+    function add(product) {
+      const items = getCart();
+      const existing = items.find((item) => item.id === product.id);
+      if (existing) existing.qty += 1;
+      else items.push({ id: product.id, name: product.name, price: product.price, image: product.img, qty: 1 });
+      saveCart(items);
+      show(product.name + " added");
+    }
+
+    function stars(v) {
+      return '<i class="fa-solid fa-star"></i>'.repeat(Math.round(v)) + '<i class="fa-regular fa-star"></i>'.repeat(5 - Math.round(v));
+    }
+
+    function cardsPerView() {
+      if (window.innerWidth <= 760) return 1;
+      if (window.innerWidth <= 980) return 2;
+      return 4;
+    }
+
+    function maxSlideIndex(list) {
+      return Math.max(0, list.length - cardsPerView());
+    }
+
+    function updateSlidePosition(track, state, list) {
+      const card = track.querySelector(".card");
+      if (!card) return;
+      const gap = parseFloat(getComputedStyle(track).gap) || 14;
+      const step = card.getBoundingClientRect().width + gap;
+      track.style.transform = `translateX(-${state.idx * step}px)`;
+    }
+
+    function startAutoSlide(track, state, list) {
+      if (state.timer) clearInterval(state.timer);
+      state.timer = setInterval(() => {
+        const max = maxSlideIndex(list);
+        if (!state.reverse) state.idx = state.idx >= max ? 0 : state.idx + 1;
+        else state.idx = state.idx <= 0 ? max : state.idx - 1;
+        updateSlidePosition(track, state, list);
+      }, 3100);
+    }
+
+    function renderRow(track, list, state) {
+      track.innerHTML = list.map((p) => `
+        <article class="card">
+          <div class="media"><img src="${p.img}" alt="${p.name}" loading="lazy"/></div>
+          <div class="body">
+            <div class="title">${p.name}</div><div class="mini">${p.cat}</div>
+            <div class="price">$${p.price}<span class="old">$${p.old}</span></div>
+            <div class="stars">${stars(p.rate)}</div>
+            <div class="actions2">
+              <button class="btn btn-primary" data-add="${p.id}"><i class="fa-solid fa-cart-plus"></i>Add</button>
+              <button class="btn btn-light" data-view="${p.id}">View</button>
+            </div>
           </div>
-           <div class="trd-product">
-            <img src="img/socks/images__23_-removebg-preview.png">
-             <p>Statement Earrings<br>(24)<br><br><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><br><br><span>$39.99</span></p>
-          </div>
-           <div class="trd-product">
-            <img src="img/shoes/pexels-introspectivedsgn-4987523-removebg-preview.png">
-            <p>Organic Cotton Shirt<br>(24)<br><br><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><br><br><span>$45.00</span></p>
-          </div>
-          <p><a href="products.html">View More <i class="fa-solid fa-arrow-right"></i></a></p>
-        </div>
-        
-        <div class="new-products">
-            <h3>New Arrivals</h3><hr>
-            <div class="trd-product">
-                <img src="img/sweater/okoj-removebg-preview.png">
-                <p>Premium Leather Tote<br>(24)<br><br><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><br><br><span>$87.50</span></p>
-                <a href=""></a>
-            </div>
-            <div class="trd-product">
-                <img src="img/sweater/WhatsApp_Image_2025-10-16_at_23.25.24_5aeba11f-removebg-preview.png">
-                <p>Premium Leather Tote<br>(24)<br><br><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><br><br><span>$87.50</span></p>
-            </div>
-            <div class="trd-product">
-                <img src="img/caps/WhatsApp_Image_2025-10-17_at_12.25.22_c541386c-removebg-preview.png">
-                <p>Premium Leather Tote<br>(24)<br><br><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><br><br><span>$87.50</span></p>
-            </div>
-            <p><a href="products.html">View More <i class="fa-solid fa-arrow-right"></i></a></p>
-        </div>
-        
-        <div class="offer-products">
-            <h3>Speciall Offer</h3><hr>
-            <div class="trd-product">
-                <img src="img/jeans/remove1-removebg-preview.png">
-                <p>Premium Leather Tote<br>(24)<br><br><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><br><br><span>$87.50</span></p>
-            </div>
-            <div class="trd-product">
-                <img src="img/shoes/WhatsApp_Image_2025-10-16_at_23.19.01_2e8ed707-removebg-preview.png">
-                <p>Premium Leather Tote<br>(24)<br><br><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><br><br><span>$87.50</span></p>
-            </div>
-            <div class="trd-product">
-                <img src="img/jeans/WhatsApp_Image_2025-10-16_at_23.26.23_240a6ff9-removebg-preview.png">
-                <p>Premium Leather Tote<br>(24)<br><br><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><br><br><span>$87.50</span></p>
-            </div>
-            <p><a href="products.html">View More <i class="fa-solid fa-arrow-right"></i></a></p>
-        </div>
-    
-    </section>
+        </article>
+      `).join("");
+      state.idx = state.reverse ? maxSlideIndex(list) : 0;
+      updateSlidePosition(track, state, list);
+      startAutoSlide(track, state, list);
+    }
 
-<!-------------------- EXCLUSIVE FLASH SALE ---------------->
-    <section class="ex-sales">
-        <div class="ex-info">
-            <br><br><br>
-            <p class="ex-intro">LIMMITED TIME <span>50% OFF</span></p>
-            <h1>Exclusive Flash Sale</h1>
-            <p class="ex-head">Don't miss out on our biggest sale of the year. Premium quality products at <br>unbeatable prices for the next 48 hours only.</p>
-            
-            <div class="timeout">
-                <div class="days">
-                  <h1>10</h1>
-                  <p>DAYS</p>
-                </div>
-                <div class="hours">
-                  <h1>15</h1>
-                  <p>HOURS</p>
-                </div>
-                <div class="min">
-                  <h1>37</h1>
-                  <p>MINUTES</p>
-                </div>
-                <div class="sec">
-                  <h1>40</h1>
-                  <p>SECONDS</p>
-                </div>
-            </div>
+    function render() {
+      const row1 = data.slice(0, 8);
+      const row2 = data.slice(2).concat(data.slice(0, 2));
+      renderRow(grid1, row1, rowState.grid1);
+      renderRow(grid2, row2, rowState.grid2);
+    }
 
-          <div class="ex-btn">
-            <div class="ex-shop"><a href="cart.html">SHOP NOW</a></div>
-            <div class="ex-details"><a href="#categoies">VIEW ALL DETAILS</a></div>
-          </div><br><br><br><br><br><br>
-        </div>
-    </section>
+    document.getElementById("shop").addEventListener("click", (e) => {
+      const addId = e.target.closest("[data-add]")?.dataset.add;
+      const viewId = e.target.closest("[data-view]")?.dataset.view;
+      if (addId) {
+        const p = data.find((x) => x.id === Number(addId));
+        if (p) add(p);
+      }
+      if (viewId) {
+        current = data.find((x) => x.id === Number(viewId));
+        if (!current) return;
+        mImg.src = current.img;
+        mTitle.textContent = current.name;
+        mStars.innerHTML = stars(current.rate) + " " + current.rate;
+        mPrice.textContent = "$" + current.price;
+        mDesc.textContent = current.desc;
+        modal.classList.add("open");
+      }
+    });
 
-<!---------------------- FOOTER-SECTION ----------------->
-     <section class="Contact-section" id="contacts">
-       <div class="contant-info">
-        <div class="ft-desc">
-              <h1><span>G-fashion</span></h1>
-             <p>Thank you for choosing GWERU FASHION <span>way.</span> We are committed to bringing you the best in fashion, ensuring you always step out in style.</p>
-             <p>Connect With Us</p>
-         <div class="medias">
-             <a href="facebook"><i class="fa-brands fa-facebook"></i></a>
-             <a href="instagram"><i class="fa-brands fa-instagram"></i></a>
-             <a href="tiktok"><i class="fa-brands fa-tiktok"></i></a></a>
-             <a href="whatsapp"><i class="fa-brands fa-whatsapp"></i></a></a>
-         </div>
-       </div>
+    close.addEventListener("click", () => modal.classList.remove("open"));
+    modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.remove("open"); });
+    mAdd.addEventListener("click", () => { if (current) add(current); modal.classList.remove("open"); });
 
-     <div class="ft-shop">
-          <h2>Shop</h2><hr>
-          <a href="index.html">Home</a>
-          <a href="products.html">Products</a>
-          <a href="cart.html">Cart</a>
-          <a href="#contacts">Contact</a>
-     </div>
+    document.getElementById("focusSearch").addEventListener("click", () => {
+      document.getElementById("shop").scrollIntoView({behavior:"smooth"});
+    });
+    menu.addEventListener("click", () => links.classList.toggle("open"));
+    document.querySelectorAll(".links a").forEach((a) => a.addEventListener("click", () => links.classList.remove("open")));
 
-     <div class="ft-contact">
-          <h2>Information Contact</h2><hr>
-          <p><i class="fa-solid fa-location-dot"></i>Global Village Room 58 & 06</p>
-          <p><i class="fa-solid fa-phone"></i>+263 78 404 0311</p>
-          <p><i class="fa-solid fa-envelope"></i>gfashion@gmail.com</p>
-          <p><i class="fa-solid fa-clock"></i>Monday-Friday: 9am-6pm<br>
-            saturday: 10am-4pm<br>
-            Sunday: Closed
-         </p>
-     </div>
+    const heroImgs = ["img/sweater/okoj-removebg-preview.png","img/shoes/pexels-introspectivedsgn-4987523-removebg-preview.png","img/caps/images__20_-removebg-preview.png"];
+    let hi = 0;
+    setInterval(() => {
+      hi = (hi + 1) % heroImgs.length;
+      document.getElementById("heroImg").src = heroImgs[hi];
+    }, 3500);
 
-     </div>
-     <hr>
-     <p class="copyright">© 2026 Copyright <span>G-ashion.</span> All Rights Reserved.</p><br>
-    </section>
+    const t = new Date(Date.now() + (3 * 24 + 9) * 3600 * 1000);
+    function tick() {
+      const z = Math.max(0, t - Date.now());
+      document.getElementById("d").textContent = String(Math.floor(z / 86400000)).padStart(2, "0");
+      document.getElementById("h").textContent = String(Math.floor(z / 3600000) % 24).padStart(2, "0");
+      document.getElementById("m").textContent = String(Math.floor(z / 60000) % 60).padStart(2, "0");
+      document.getElementById("s").textContent = String(Math.floor(z / 1000) % 60).padStart(2, "0");
+    }
+    setInterval(tick, 1000);
+    tick();
+
+    window.addEventListener("resize", () => {
+      const row1 = data.slice(0, 8);
+      const row2 = data.slice(2).concat(data.slice(0, 2));
+      rowState.grid1.idx = Math.min(rowState.grid1.idx, maxSlideIndex(row1));
+      rowState.grid2.idx = Math.min(rowState.grid2.idx, maxSlideIndex(row2));
+      updateSlidePosition(grid1, rowState.grid1, row1);
+      updateSlidePosition(grid2, rowState.grid2, row2);
+    });
+
+    newsletterForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = newsletterEmail.value.trim();
+      if (!email || !email.includes("@")) {
+        show("Enter a valid email");
+        return;
+      }
+      newsletterForm.reset();
+      show("Subscribed successfully");
+    });
+
+    document.querySelectorAll(".faq details").forEach((item) => {
+      item.addEventListener("toggle", () => {
+        if (!item.open) return;
+        document.querySelectorAll(".faq details").forEach((other) => {
+          if (other !== item) other.open = false;
+        });
+      });
+    });
+    const voices = document.querySelectorAll(".voice");
+    voices.forEach((card, idx) => {
+      if (idx === 0) card.classList.add("active");
+      card.addEventListener("click", () => {
+        voices.forEach((other) => other.classList.remove("active"));
+        card.classList.add("active");
+      });
+    });
+
+    saveCart(getCart());
+    render();
+  </script>
 </body>
 </html>
